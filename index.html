@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitQuest | The Obsidian Realm</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="bg-overlay"></div>
+
+    <section id="login-page">
+        <div class="glass-card login-container">
+            <h1 class="logo">FIT<span>QUEST</span></h1>
+            <p class="tagline">Your journey to legendary status begins here.</p>
+            
+            <div class="form-group">
+                <div class="input-wrapper">
+                    <label>Warrior Name</label>
+                    <input type="text" id="username" placeholder="Enter name...">
+                </div>
+                <div class="input-wrapper">
+                    <label>Spirit Guide</label>
+                    <select id="animal-select"></select>
+                </div>
+                <button onclick="login()" class="glow-btn main-btn">ENTER REALM</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboard" class="hidden">
+        <header class="app-header">
+            <div class="nav-container">
+                <div class="logo-sm">FIT<span>QUEST</span></div>
+                <nav class="links">
+                    <a href="#logger-section">Quest Log</a>
+                    <a href="#challenges-section">Daily Quests</a>
+                    <a href="#achievements-section">Hall of Fame</a>
+                </nav>
+                <div class="stats-pills">
+                    <div class="pill blue">🔥 <span id="streak-count">1</span> DAY STREAK</div>
+                    <button onclick="location.reload()" class="icon-btn"><i data-lucide="log-out"></i></button>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            <aside class="sidebar">
+                <div class="profile-card glass-card">
+                    <div class="avatar-box">
+                        <img id="user-avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Warrior" alt="Avatar">
+                        <button onclick="toggleAvatarModal()" class="edit-btn"><i data-lucide="edit-3"></i></button>
+                    </div>
+                    <h2 id="display-username">Warrior</h2>
+                    <div class="level-indicator">LEVEL <span id="level-val">1</span></div>
+                    <div class="xp-group">
+                        <div class="xp-labels"><span>Progress</span><span id="xp-text">0/500 XP</span></div>
+                        <div class="xp-track"><div id="xp-fill"></div></div>
+                    </div>
+                </div>
+
+                <div class="guide-card glass-card">
+                    <div id="guide-icon" class="animal-emoji">🦊</div>
+                    <div class="speech">
+                        <p id="guide-msg">Awaiting your command, Warrior.</p>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="main-content">
+                <section id="logger-section" class="glass-card">
+                    <h3 class="section-h"><i data-lucide="sword"></i> Log Daily Quest</h3>
+                    <div class="log-controls">
+                        <div class="control">
+                            <label>Activity Type</label>
+                            <select id="activity-select" onchange="handleActivityChange()"></select>
+                        </div>
+                        <div class="control">
+                            <label>Duration</label>
+                            <div class="time-inputs">
+                                <input type="number" id="hrs" value="0" min="0"> <span>H</span>
+                                <input type="number" id="mins" value="30" min="0"> <span>M</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="logQuest()" class="glow-btn full">CLAIM EXPERIENCE</button>
+                </section>
+
+                <section id="challenges-section" class="panel">
+                    <h3 class="section-h">Daily Challenges</h3>
+                    <div class="challenge-scroll">
+                        <div class="c-card c1"><h4>Iron Ritual</h4><p>45m Lifting</p><span>+200 XP</span></div>
+                        <div class="c-card c2"><h4>Shadow Run</h4><p>5km Cardio</p><span>+300 XP</span></div>
+                        <div class="c-card c3"><h4>Zen State</h4><p>20m Meditation</p><span>+150 XP</span></div>
+                    </div>
+                </section>
+
+                <section id="achievements-section" class="panel">
+                    <h3 class="section-h">Hall of Fame (<span id="unlocked-count">0</span>/30)</h3>
+                    <div id="achievement-grid" class="achieve-grid">
+                        </div>
+                </section>
+            </main>
+        </div>
+    </section>
+
+    <div id="avatar-modal" class="modal hidden">
+        <div class="modal-box glass-card">
+            <div class="modal-header">
+                <h3>Customize Avatar</h3>
+                <button onclick="toggleAvatarModal()" class="close-x">&times;</button>
+            </div>
+            <div id="avatar-options" class="avatar-grid"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
